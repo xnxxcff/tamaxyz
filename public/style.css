@@ -65,3 +65,215 @@ footer{border-top:1px solid #ffffff15;padding:26px 0 18px}.footbrand{display:fle
     flex-basis: 78%;
   }
 }
+
+/* ===== TAMA ORDER CUSTOMER REVIEWS ===== */
+.reviews-section {
+  padding: 32px 18px;
+  margin: 24px auto;
+  max-width: 1100px;
+  color: #f1f5f9;
+}
+
+.reviews-section .sectionhead {
+  margin-bottom: 22px;
+}
+
+.reviews-section .eyebrow {
+  color: #22d3ee;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.reviews-section h2 {
+  font-size: clamp(25px, 5vw, 36px);
+  margin: 0 0 10px;
+  font-weight: 800;
+}
+
+.reviews-section h2 span {
+  color: #22d3ee;
+}
+
+.reviews-section p {
+  color: #94a3b8;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.review-summary {
+  background: linear-gradient(135deg, #0f172a, #082f49);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.review-score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.review-score strong {
+  color: #fff;
+  font-size: 38px;
+  font-weight: 900;
+}
+
+.review-stars {
+  color: #fbbf24;
+  font-size: 23px;
+  letter-spacing: 3px;
+}
+
+.review-score small {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #0f172a;
+  border: 1px solid #263449;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.review-form h3 {
+  font-size: 19px;
+  margin: 0 0 6px;
+}
+
+.review-form label {
+  font-size: 13px;
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+.review-form input,
+.review-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  color: #f8fafc;
+  background: #020617;
+  border: 1px solid #334155;
+  border-radius: 11px;
+  outline: none;
+  font: inherit;
+  font-size: 14px;
+}
+
+.review-form input:focus,
+.review-form textarea:focus {
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+}
+
+.review-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.review-rating-input {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.review-rating-input button {
+  background: #1e293b;
+  color: #64748b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  width: 43px;
+  height: 43px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.review-rating-input button.active,
+.review-rating-input button:hover {
+  color: #fbbf24;
+  border-color: #fbbf24;
+  transform: translateY(-2px);
+}
+
+.review-form .btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.review-form .btn.primary {
+  background: linear-gradient(135deg, #06b6d4, #2563eb);
+  color: #fff;
+  box-shadow: 0 7px 20px rgba(6, 182, 212, 0.18);
+}
+
+.review-form .btn.primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.review-message {
+  font-size: 12px;
+  margin: 0;
+}
+
+.review-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 14px;
+}
+
+.review-card {
+  background: #0f172a;
+  border: 1px solid #263449;
+  border-radius: 16px;
+  padding: 18px;
+  overflow-wrap: anywhere;
+}
+
+.review-card h4 {
+  margin: 0 0 8px;
+  color: #f8fafc;
+  font-size: 15px;
+}
+
+.review-card .review-card-stars {
+  color: #fbbf24;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.review-card p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 480px) {
+  .reviews-section {
+    padding: 25px 14px;
+  }
+
+  .review-form {
+    padding: 16px;
+  }
+
+  .review-summary {
+    padding: 18px;
+  }
+    }
