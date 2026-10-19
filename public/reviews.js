@@ -55,6 +55,10 @@ ratingPicker.addEventListener("click", (event) => {
   });
 });
 
+
+const showAllButton = document.getElementById("showAllReviews");
+let showAllReviews = false;
+
 // Memuat ulasan yang sudah disetujui admin
 async function loadReviews() {
   try {
@@ -66,18 +70,37 @@ async function loadReviews() {
     const snapshot = await getDocs(approvedQuery);
     const reviews = snapshot.docs.map((doc) => doc.data());
 
+    reviews.sort((a, b) => {
+      const timeA = a.createdAt?.toMillis?.() || 0;
+      const timeB = b.createdAt?.toMillis?.() || 0;
+      return timeB - timeA;
+    });
+
+    // Rating dan jumlah tetap menghitung semua ulasan approved
+    const count = reviews.length;
+    const average = count
+      ? reviews.reduce((sum, review) => sum + review.rating, 0) / count
+      : 0;
+
+    averageElement.textContent = count ? average.toFixed(1) : "—";
+    averageStars.textContent = count
+      ? "★".repeat(Math.round(average)) +
+        "☆".repeat(5 - Math.round(average))
+      : "☆☆☆☆☆";
+
+    countElement.textContent = `${count} ulasan`;
+
+    // Tampilkan maksimal 3 ulasan, kecuali tombol dibuka
+    const visibleReviews = showAllReviews ? reviews : reviews.slice(0, 3);
+
     reviewList.replaceChildren();
 
-    if (reviews.length === 0) {
-      reviewList.textContent = "Belum ada ulasan yang disetujui.";
+    if (count === 0) {
+      const empty = document.createElement("p");
+      empty.textContent = "Belum ada ulasan yang disetujui.";
+      reviewList.appendChild(empty);
     } else {
-      reviews.sort((a, b) => {
-        const timeA = a.createdAt?.toMillis?.() || 0;
-        const timeB = b.createdAt?.toMillis?.() || 0;
-        return timeB - timeA;
-      });
-
-      reviews.forEach((review) => {
+      visibleReviews.forEach((review) => {
         const card = document.createElement("article");
         card.className = "review-card";
 
@@ -97,22 +120,24 @@ async function loadReviews() {
       });
     }
 
-    const count = reviews.length;
-    const average = count
-      ? reviews.reduce((sum, review) => sum + review.rating, 0) / count
-      : 0;
-
-    averageElement.textContent = count ? average.toFixed(1) : "—";
-    averageStars.textContent = count
-      ? "★".repeat(Math.round(average)) +
-        "☆".repeat(5 - Math.round(average))
-      : "☆☆☆☆☆";
-
-    countElement.textContent = `${count} ulasan`;
+    // Tombol hanya muncul jika ulasan lebih dari 3
+    if (showAllButton) {
+      showAllButton.hidden = count <= 3;
+      showAllButton.textContent = showAllReviews
+        ? "Tampilkan Lebih Sedikit"
+        : "Lihat Semua Ulasan";
+    }
   } catch (error) {
     console.error("Gagal memuat ulasan:", error);
     reviewList.textContent = "Ulasan belum bisa dimuat. Coba refresh halaman.";
   }
+}
+
+if (showAllButton) {
+  showAllButton.addEventListener("click", () => {
+    showAllReviews = !showAllReviews;
+    loadReviews();
+  });
 }
 
 // Mengirim ulasan ke Firestore
