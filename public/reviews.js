@@ -77,7 +77,7 @@ async function loadReviews() {
         return timeB - timeA;
       });
 
-      reviews.forEach((review) => {
+      reviews.slice(0, 3).forEach((review) => {
         const card = document.createElement("article");
         card.className = "review-card";
 
