@@ -277,3 +277,141 @@ footer{border-top:1px solid #ffffff15;padding:26px 0 18px}.footbrand{display:fle
     padding: 18px;
   }
     }
+
+/* TAMA ORDER - compact customer reviews */
+.reviews-section {
+  max-width: 760px;
+  margin: 18px auto;
+  padding: 20px 14px;
+}
+
+.reviews-section .sectionhead {
+  margin-bottom: 14px;
+}
+
+.reviews-section .eyebrow {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+}
+
+.reviews-section h2 {
+  font-size: 23px;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.reviews-section .sectionhead p {
+  font-size: 12px;
+  margin: 5px 0 0;
+}
+
+.review-summary {
+  padding: 13px 16px;
+  margin-bottom: 12px;
+  border-radius: 13px;
+}
+
+.review-score {
+  gap: 3px;
+}
+
+.review-score strong {
+  font-size: 29px;
+}
+
+.review-stars {
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.review-score small {
+  font-size: 11px;
+}
+
+.review-form {
+  gap: 9px;
+  padding: 15px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+}
+
+.review-form h3 {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.review-form label {
+  font-size: 12px;
+}
+
+.review-form input,
+.review-form textarea {
+  padding: 10px 11px;
+  font-size: 13px;
+  border-radius: 9px;
+}
+
+.review-form textarea {
+  min-height: 75px;
+}
+
+.review-rating-input {
+  gap: 6px;
+}
+
+.review-rating-input button {
+  width: 36px;
+  height: 36px;
+  font-size: 21px;
+  border-radius: 8px;
+}
+
+.review-form .btn {
+  padding: 11px 14px;
+  font-size: 13px;
+  border-radius: 9px;
+}
+
+.review-message {
+  font-size: 11px;
+}
+
+.review-list {
+  gap: 10px;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 220px), 1fr)
+  );
+}
+
+.review-card {
+  padding: 13px;
+  border-radius: 12px;
+}
+
+.review-card h4 {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.review-card .review-card-stars {
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.review-card p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .reviews-section {
+    padding: 18px 12px;
+    margin: 12px auto;
+  }
+
+  .review-list {
+    grid-template-columns: 1fr;
+  }
+  }
