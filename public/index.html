@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b14">
+<title>TAMA ORDER — Digital Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+<div class="loader" id="pageLoader"><img class="loader-logo" src="/logo.png" alt="TAMA ORDER"><div class="loadbar"><i></i></div><p>Menyiapkan toko digital...</p></div>
+<main class="shell">
+<nav class="nav">
+<a class="brand" href="#"><span class="logo"><img src="/logo.png" alt="TAMA ORDER"></span><span><b>TAMA <em>ORDER</em></b><small>DIGITAL PRODUCT STORE</small></span></a>
+<div class="navbuttons"><button id="themeBtn" class="btn ghost">◉ Tema⌄</button><button id="tutorial" class="btn primary">Cara Membeli ↗</button></div>
+</nav>
+<section class="hero">
+<div class="herotext"><div class="eyebrow"><i></i> DIGITAL STORE • SIMPLE & SECURE</div><h1>Temukan produk<br><span>digital pilihanmu.</span></h1><p>Produk digital pilihan, proses pemesanan mudah, dan bantuan admin saat kamu butuhkan.</p><div class="heroactions"><a class="btn primary" href="#catalog">Jelajahi Produk ↓</a><span>✓ Bantuan admin tersedia</span></div></div>
+<div class="heroart"><div class="orbit one"></div><div class="orbit two"></div><div class="cube">T<i></i></div><div class="float f1">✦ <span>PREMIUM<small>DIGITAL ACCESS</small></span></div><div class="float f2">✓ <span>ORDER READY<small>Easy checkout</small></span></div></div>
+<div class="herofoot"><span>● Pilih paket sesuai kebutuhan</span><span>SCROLL TO EXPLORE ↓</span></div>
+</section>
+<section id="catalog" class="catalog">
+<div class="sectionhead"><div><div class="eyebrow">KOLEKSI TAMA</div><h2>Produk <span>unggulan.</span></h2><p>Pilih produk, cek detail, lalu lanjutkan pemesanan.</p></div><div class="arrows"><button id="prev">←</button><button id="next">→</button></div></div>
+<div id="products" class="products"></div><div class="catalogfoot"><i></i> Katalog produk pilihan <span></span> Harga dalam Rupiah (IDR)</div>
+</section>
+<section class="support"><div class="sectionhead"><div><div class="eyebrow">TETAP TERHUBUNG</div><h2>Butuh bantuan?</h2><p>Ikuti update dan lihat pengalaman pembeli lainnya.</p></div></div>
+<div class="supportgrid"><a class="supportcard" data-channel="testimonial" href="#" target="_blank" rel="noopener"><b class="supporticon">✧</b><span><strong>Channel Testimoni</strong><small>Lihat review dan bukti transaksi</small></span><i>↗</i></a><a class="supportcard featured" data-channel="admin" href="#" target="_blank" rel="noopener"><b class="supporticon green">➤</b><span><strong>Admin TAMA ORDER</strong><small>Tanya produk dan bantuan pemesanan</small></span><i>↗</i></a></div>
+</section>
+<footer><div class="footbrand"><span class="logo"><img src="/logo.png" alt="TAMA ORDER"></span><b>TAMA <em>ORDER</em></b></div><p>Belanja digital jadi lebih simpel.</p><div class="footbottom"><span>© <span id="year"></span> TAMA ORDER</span><span>DESIGNED FOR A BETTER EXPERIENCE ✦</span></div></footer>
+</main>
+<div id="themeBackdrop" class="overlay" hidden><section class="dialog"><button class="x" data-dismiss="themeBackdrop">×</button><div class="eyebrow">PERSONALISASI</div><h2>Pilih tema warna</h2><p>Sesuaikan tampilan dengan selera kamu.</p><div id="themeChoices" class="themegrid"></div></section></div>
+<div id="modal" class="overlay" hidden><section class="dialog"><button id="close" class="x">×</button><div class="eyebrow">TAMA ORDER</div><h2 id="modalTitle">Detail</h2><div id="modalBody"></div></section></div>
+
+<audio id="tamaMusic" src="/backsound.mp3" loop preload="auto"></audio>
+
+<button id="musicToggle" type="button"
+  style="position:fixed;right:18px;bottom:80px;z-index:9999;
+  border:1px solid #16d7f4;border-radius:999px;padding:12px 16px;
+  background:#101625;color:#fff;font-weight:700;cursor:pointer;">
+  ▶ Putar Musik
+</button>
+
+<script src="app.js"></script>
+  <script type="module" src="reviews.js"></script>
+<script>
+(() => {
+  const music = document.getElementById("tamaMusic");
+  const button = document.getElementById("musicToggle");
+  if (!music || !button) return;
+
+  music.volume = 0.25;
+
+  function updateButton() {
+    button.textContent = music.paused
+      ? "▶ Putar Musik"
+      : "Ⅱ Matikan Musik";
+  }
+
+  button.addEventListener("click", async () => {
+    if (!music.paused) {
+      music.pause();
+      updateButton();
+      return;
+    }
+
+    try {
+      await music.play();
+      updateButton();
+    } catch (e) {
+      button.textContent = "↻ Coba Putar Lagi";
+    }
+  });
+
+  music.addEventListener("play", updateButton);
+  music.addEventListener("pause", updateButton);
+
+  music.play().then(updateButton).catch(() => {
+    button.textContent = "▶ Putar Musik";
+  });
+})();
+</script>
+  
+<script>
+(() => {
+  const btn = document.getElementById("musicToggle");
+  if (!btn) return;
+
+  let dragging = false;
+  let moved = false;
+  let startX = 0, startY = 0;
+  let offsetX = 0, offsetY = 0;
+
+  btn.style.touchAction = "none";
+  btn.style.userSelect = "none";
+  btn.style.cursor = "grab";
+
+  btn.addEventListener("pointerdown", e => {
+    dragging = true;
+    moved = false;
+    startX = e.clientX;
+    startY = e.clientY;
+
+    const rect = btn.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+
+    btn.setPointerCapture(e.pointerId);
+    btn.style.cursor = "grabbing";
+  });
+
+  btn.addEventListener("pointermove", e => {
+    if (!dragging) return;
+
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+
+    if (Math.abs(dx) > 5 || Math.abs(dy) > 5) moved = true;
+    if (!moved) return;
+
+    const x = Math.max(0, Math.min(
+      window.innerWidth - btn.offsetWidth,
+      e.clientX - offsetX
+    ));
+    const y = Math.max(0, Math.min(
+      window.innerHeight - btn.offsetHeight,
+      e.clientY - offsetY
+    ));
+
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+    btn.style.right = "auto";
+    btn.style.bottom = "auto";
+  });
+
+  btn.addEventListener("pointerup", e => {
+    dragging = false;
+    btn.style.cursor = "grab";
+
+    if (moved) {
+      // Mencegah klik play/pause setelah tombol digeser.
+      btn.addEventListener("click", ev => {
+        ev.stopImmediatePropagation();
+        ev.preventDefault();
+      }, { once: true, capture: true });
+    }
+  });
+
+  btn.addEventListener("pointercancel", () => {
+    dragging = false;
+    btn.style.cursor = "grab";
+  });
+})();
+      </script>
+  
+</body></html>
