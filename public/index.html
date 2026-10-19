@@ -24,6 +24,69 @@
 <div class="sectionhead"><div><div class="eyebrow">KOLEKSI TAMA</div><h2>Produk <span>unggulan.</span></h2><p>Pilih produk, cek detail, lalu lanjutkan pemesanan.</p></div><div class="arrows"><button id="prev">←</button><button id="next">→</button></div></div>
 <div id="products" class="products"></div><div class="catalogfoot"><i></i> Katalog produk pilihan <span></span> Harga dalam Rupiah (IDR)</div>
 </section>
+  <section id="customerReviews" class="reviews-section">
+  <div class="sectionhead">
+    <div>
+      <div class="eyebrow">CUSTOMER REVIEWS</div>
+      <h2>Review <span>pembeli.</span></h2>
+      <p>Bagikan pengalaman kamu berbelanja di TAMA ORDER.</p>
+    </div>
+  </div>
+
+  <div class="review-summary">
+    <div class="review-score">
+      <strong id="reviewAverage">—</strong>
+      <div id="reviewAverageStars" class="review-stars">☆☆☆☆☆</div>
+      <small id="reviewCount">0 ulasan</small>
+    </div>
+  </div>
+
+  <form id="reviewForm" class="review-form">
+    <h3>Kasih ulasan kamu</h3>
+
+    <label for="reviewName">Nama atau username</label>
+    <input
+      id="reviewName"
+      name="name"
+      type="text"
+      maxlength="40"
+      placeholder="Nama kamu"
+      required
+    >
+
+    <label>Rating</label>
+    <div class="review-rating-input" id="ratingPicker">
+      <button type="button" data-rating="1" aria-label="1 bintang">★</button>
+      <button type="button" data-rating="2" aria-label="2 bintang">★</button>
+      <button type="button" data-rating="3" aria-label="3 bintang">★</button>
+      <button type="button" data-rating="4" aria-label="4 bintang">★</button>
+      <button type="button" data-rating="5" aria-label="5 bintang">★</button>
+    </div>
+
+    <label for="reviewComment">Komentar</label>
+    <textarea
+      id="reviewComment"
+      name="comment"
+      minlength="3"
+      maxlength="500"
+      rows="4"
+      placeholder="Tulis pengalaman kamu..."
+      required
+    ></textarea>
+
+    <button class="btn primary" type="submit" id="reviewSubmit">
+      Kirim Review
+    </button>
+
+    <p id="reviewMessage" class="review-message" role="status">
+      Review akan tampil setelah disetujui admin.
+    </p>
+  </form>
+
+  <div id="reviewList" class="review-list" aria-live="polite">
+    <p>Memuat review...</p>
+  </div>
+    </section>
 <section class="support"><div class="sectionhead"><div><div class="eyebrow">TETAP TERHUBUNG</div><h2>Butuh bantuan?</h2><p>Ikuti update dan lihat pengalaman pembeli lainnya.</p></div></div>
 <div class="supportgrid"><a class="supportcard" data-channel="testimonial" href="#" target="_blank" rel="noopener"><b class="supporticon">✧</b><span><strong>Channel Testimoni</strong><small>Lihat review dan bukti transaksi</small></span><i>↗</i></a><a class="supportcard featured" data-channel="admin" href="#" target="_blank" rel="noopener"><b class="supporticon green">➤</b><span><strong>Admin TAMA ORDER</strong><small>Tanya produk dan bantuan pemesanan</small></span><i>↗</i></a></div>
 </section>
