@@ -626,4 +626,25 @@ footer{border-top:1px solid #ffffff15;padding:26px 0 18px}.footbrand{display:fle
     transform: none;
   }
     }
-                       
+                       .show-reviews-btn {
+  display: block;
+  margin: 14px auto 0;
+  padding: 10px 18px;
+  color: #67e8f9;
+  background: rgba(8, 20, 38, .8);
+  border: 1px solid rgba(103, 232, 249, .3);
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.show-reviews-btn:hover {
+  background: rgba(34, 211, 238, .1);
+  border-color: #67e8f9;
+}
+
+.show-reviews-btn[hidden] {
+  display: none;
+                         }
