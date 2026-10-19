@@ -1,0 +1,1 @@
+TAMA ORDER static Netlify version. Replace the three files in your repo's public folder. Update CONFIG in public/app.js: whatsappNumber, telegramUrl, testimonialUrl, qrisImage, and product list. Publish directory is public. This static version does not include server-side admin or automatic payment verification.
